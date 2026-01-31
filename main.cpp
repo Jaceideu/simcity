@@ -1,15 +1,7 @@
-#include <iostream>
 #include <raylib-cpp.hpp>
+#include "game.hpp"
 
 int main() {
-    using namespace std;
-
-    raylib::Window window(800, 600, "Testować");
-    window.SetTargetFPS(60);
-
-    while(!window.ShouldClose()) {
-        window.BeginDrawing();
-        window.ClearBackground(DARKGREEN);
-        window.EndDrawing();
-    }
+    citygame::Game game;  
+    game.enterMainLoop();
 }
