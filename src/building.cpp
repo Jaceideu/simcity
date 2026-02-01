@@ -3,27 +3,13 @@
 
 namespace citygame {
 
-    raylib::Texture2D Building::texture;
-
     Building::Building(raylib::Rectangle source)
-        :source(source) {
+        : GridCell(source) {
 
     }
 
-    void Building::loadTexture(std::string path) {
-        texture.Load(path);
+    bool Building::isEmpty() { 
+        return false;
     }
-
-    void Building::unloadTexture() {
-        texture.Unload();
-    }
-
-    void Building::draw(raylib::Rectangle dest) {
-        texture.Draw(source, dest);
-    }
-
-    void Building::step(const int8_t x, const int8_t, Grid& grid) {
-
-    }
-
+  
 }

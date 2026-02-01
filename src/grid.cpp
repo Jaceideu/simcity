@@ -1,5 +1,5 @@
 #include "grid.hpp"
-#include "building.hpp"
+#include "grid_cell.hpp"
 #include <memory>
 
 namespace citygame {
@@ -9,32 +9,32 @@ namespace citygame {
         data.resize(width * height);
 
         for (auto& cell : data) {
-            cell = std::make_unique<Building>(raylib::Rectangle{});
+            cell = std::make_unique<GridCell>(raylib::Rectangle{});
         }
     }
 
     void Grid::draw(raylib::Vector2 position) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Building* building = data[vecToIndex(x, y)].get();
+                GridCell* cell = data[vecToIndex(x, y)].get();
                 raylib::Rectangle rect(x*cellSize + position.x, y*cellSize + position.y, cellSize, cellSize);
-                building->draw(rect);
+                cell->draw(rect);
             }
         }
     }
 
-    Building* Grid::getCell(const int8_t x, const int8_t y) const {
+    GridCell* Grid::getCell(const int8_t x, const int8_t y) const {
 
         if (!checkInBounds(x, y)) return nullptr;
 
         return data[vecToIndex(x, y)].get();
     }
 
-    void Grid::setCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding) {
+    void Grid::setCell(const int8_t x, const int8_t y, std::unique_ptr<GridCell> cell) {
 
         if (!checkInBounds(x, y)) return;
 
-        data[vecToIndex(x, y)] = std::move(newBuilding);
+        data[vecToIndex(x, y)] = std::move(cell);
     }
 
     std::int8_t Grid::getWidth() const {

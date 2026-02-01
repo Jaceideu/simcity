@@ -1,4 +1,4 @@
-#include <raylib-cpp.hpp>
+#include "raylib-cpp.hpp"
 #include "game.hpp"
 #include "constants.hpp"
 
@@ -9,12 +9,11 @@ namespace citygame {
 
         window.SetTargetFPS(60);
 
-        Building::loadTexture("assets/textures/buildings.png");
-        city.getGrid().setCell(0, 0, std::make_unique<Building>(raylib::Rectangle(0, 0, 16, 16)));
+        GridCell::loadTexture("assets/textures/buildings.png");
     }
 
     Game::~Game() {
-        Building::unloadTexture();
+        GridCell::unloadTexture();
     }
 
     void Game::enterMainLoop() {

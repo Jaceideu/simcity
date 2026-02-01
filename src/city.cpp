@@ -1,11 +1,22 @@
 #include "city.hpp"
 #include "constants.hpp"
+#include "decoration.hpp"
+#include "rng.hpp"
 
 namespace citygame {
 
     City::City() 
         :backgroundColor(CITY_BACKGROUND_COLOR), cellOffsetX(CITY_SCREEN_CELL_OFFSET), cellOffsetY(CITY_SCREEN_CELL_OFFSET), grid(CITY_GRID_WIDTH, CITY_GRID_HEIGHT, CELL_SIZE), mouseHandler(this) {
+        
+        for (int y = 0; y < grid.getHeight(); y++) {
+            for (int x = 0; x < grid.getWidth(); x++) {
 
+                if (RandomInt(0, 1) == 1) {
+                    grid.setCell(x, y, std::make_unique<Decoration>());
+                }
+                
+            }
+        }
     }
 
     void City::update() {
@@ -19,8 +30,9 @@ namespace citygame {
         grid.draw(raylib::Vector2(cellOffsetX * grid.getCellSize(), cellOffsetY * grid.getCellSize()));
     }
 
-    void City::setGridCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding) {
-        grid.setCell(x - cellOffsetX, y - cellOffsetY, std::move(newBuilding));
+    void City::cityCellToGridCell(int8_t& x, int8_t& y) {
+        x -= cellOffsetX;
+        y -= cellOffsetY;
     }
 
     Grid& City::getGrid() {

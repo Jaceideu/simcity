@@ -1,6 +1,7 @@
 #pragma once
 #include "grid.hpp"
 #include "mouse_handler.hpp"
+#include <tuple>
 
 namespace citygame {
 
@@ -9,7 +10,7 @@ namespace citygame {
             City();
             void update();
             void draw();
-            void setGridCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding);
+            void cityCellToGridCell(int8_t& x, int8_t& y);
             Grid& getGrid();
         private:
             raylib::Color backgroundColor;

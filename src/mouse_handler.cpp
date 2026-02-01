@@ -1,7 +1,10 @@
 #include "mouse_handler.hpp"
 #include "constants.hpp"
 #include "city.hpp"
-#include <raylib-cpp.hpp>
+#include "raylib-cpp.hpp"
+#include "rng.hpp"
+#include "residental_building.hpp"
+#include <iostream>
 
 namespace citygame {
 
@@ -22,7 +25,21 @@ namespace citygame {
 
 
         if (Mouse::IsButtonPressed(MouseButton::MOUSE_BUTTON_LEFT)) {
-            city->setGridCell(cellX, cellY, std::make_unique<Building>(raylib::Rectangle(16, 0, 16, 16)));
+            int8_t cCellX = cellX, cCellY = cellY;
+
+            city->cityCellToGridCell(cCellX, cCellY);
+
+            GridCell* currCell = city->getGrid().getCell(cCellX, cCellY);
+
+            if (currCell && currCell->isEmpty()) {
+                
+                bool shouldFlip = RandomInt(0, 1) == 1 ? true : false;
+
+                auto newBuilding = std::make_unique<ResidentalBuilding>();
+                newBuilding->flip(shouldFlip);
+
+                city->getGrid().setCell(cCellX, cCellY, std::move(newBuilding));
+            }
         }
     }
 
