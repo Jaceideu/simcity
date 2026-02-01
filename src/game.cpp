@@ -10,7 +10,7 @@ namespace citygame {
         window.SetTargetFPS(60);
 
         Building::loadTexture("assets/textures/buildings.png");
-        city.GetGrid().SetCell(0, 0, std::make_unique<Building>(raylib::Rectangle(0, 0, 16, 16)));
+        city.getGrid().setCell(0, 0, std::make_unique<Building>(raylib::Rectangle(0, 0, 16, 16)));
     }
 
     Game::~Game() {
@@ -21,11 +21,11 @@ namespace citygame {
 
         while(!window.ShouldClose()) {
 
-            city.Update();
+            city.update();
 
             renderTexture.BeginMode();
             window.ClearBackground(clearColor);
-            city.Draw();
+            city.draw();
             renderTexture.EndMode();
 
             window.BeginDrawing();

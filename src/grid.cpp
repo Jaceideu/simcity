@@ -13,33 +13,52 @@ namespace citygame {
         }
     }
 
-    void Grid::Draw(raylib::Vector2 position) {
+    void Grid::draw(raylib::Vector2 position) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Building* building = data[vecToIndex(x, y)].get();
-                raylib::Rectangle rect(x*16 + position.x, y*16 + position.y, cellSize, cellSize);
+                raylib::Rectangle rect(x*cellSize + position.x, y*cellSize + position.y, cellSize, cellSize);
                 building->draw(rect);
             }
         }
     }
 
-    void Grid::SetCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding) {
+    Building* Grid::getCell(const int8_t x, const int8_t y) const {
+
+        if (!checkInBounds(x, y)) return nullptr;
+
+        return data[vecToIndex(x, y)].get();
+    }
+
+    void Grid::setCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding) {
+
+        if (!checkInBounds(x, y)) return;
+
         data[vecToIndex(x, y)] = std::move(newBuilding);
     }
 
-    std::int8_t Grid::getWidth() {
+    std::int8_t Grid::getWidth() const {
         return width;
     }
 
-    std::int8_t Grid::getHeight() {
+    std::int8_t Grid::getHeight() const {
         return height;
     }
 
-    std::int8_t Grid::getCellSize() {
+    std::int8_t Grid::getCellSize() const {
         return cellSize;
     }
 
-    std::int16_t Grid::vecToIndex(const int8_t x, const int8_t y) {
+    bool Grid::checkInBounds(const int8_t x, const int8_t y) const {
+        if (x < 0) return false;
+        if (x > width - 1) return false;
+        if (y < 0) return false;
+        if (y > height - 1) return false;
+
+        return true;
+    }
+
+    std::int16_t Grid::vecToIndex(const int8_t x, const int8_t y) const {
         return y * width + x % width;
     }
 

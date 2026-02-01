@@ -7,12 +7,14 @@ namespace citygame {
     class City {
         public:
             City();
-            void Update();
-            void Draw();
-            Grid& GetGrid();
+            void update();
+            void draw();
+            void setGridCell(const int8_t x, const int8_t y, std::unique_ptr<Building> newBuilding);
+            Grid& getGrid();
         private:
             raylib::Color backgroundColor;
-            raylib::Vector2 screenPosition;
+            int8_t cellOffsetX;
+            int8_t cellOffsetY;
             Grid grid;
             MouseHandler mouseHandler;
     };

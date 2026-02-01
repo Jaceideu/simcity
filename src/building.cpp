@@ -22,4 +22,8 @@ namespace citygame {
         texture.Draw(source, dest);
     }
 
+    void Building::step(const int8_t x, const int8_t, Grid& grid) {
+
+    }
+
 }

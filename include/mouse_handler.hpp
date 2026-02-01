@@ -1,17 +1,22 @@
 #pragma once
-#include "grid.hpp"
+#include <raylib-cpp.hpp>
+#include <cstdint>
 
 namespace citygame {
 
+    class City;
+
     class MouseHandler {
         public:
-            MouseHandler(Grid* grid);
-            void Update();
-            void Draw();
+            MouseHandler(City* city);
+            void update();
+            void draw();
         private:
-            Grid* grid;
+            City* city;
             raylib::Rectangle selectRectangle;
             raylib::Color selectColor;
+            int8_t cellX;
+            int8_t cellY;
     };
 
 }
