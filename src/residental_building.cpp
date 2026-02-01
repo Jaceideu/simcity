@@ -18,4 +18,8 @@ namespace citygame {
         return 1;
     }
 
+    int ResidentalBuilding::getCost() const {
+        return 2;
+    }
+
 }

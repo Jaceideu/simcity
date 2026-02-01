@@ -2,10 +2,8 @@
 
 namespace citygame {
 
-    raylib::Texture2D Button::texture;
-
     Button::Button(raylib::Vector2 pos, raylib::Rectangle source, std::function<void()> callback)
-        : position(pos), source(source), callback(callback) {
+        : UiElement(pos, source), callback(callback) {
 
     }
 
@@ -32,14 +30,5 @@ namespace citygame {
 
         return true;
     }
-
-    void Button::loadTexture(std::string path) {
-        texture.Load(path);
-    }
-
-    void Button::unloadTexture() {
-        texture.Unload();
-    }
             
-
 }

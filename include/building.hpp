@@ -12,6 +12,7 @@ namespace citygame {
         public:
             Building(raylib::Rectangle source);
             virtual bool isEmpty() override;
+            virtual int getCost() const = 0;
     };
 
 }

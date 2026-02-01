@@ -7,19 +7,19 @@ namespace citygame {
         : scale(scale) {
     }
 
-    void UiManager::addButton(std::unique_ptr<Button> button) {
-        buttons.emplace_back(std::move(button));
+    void UiManager::addElement(std::unique_ptr<UiElement> element) {
+        elements.emplace_back(std::move(element));
     }
 
     void UiManager::update() {
-        for (auto& btn : buttons) {
-            btn->update(scale);
+        for (auto& el : elements) {
+            el->update(scale);
         }
     }
 
     void UiManager::draw() {
-        for (auto& btn : buttons) {
-            btn->draw(scale);
+        for (auto& el : elements) {
+            el->draw(scale);
         }
     }
 

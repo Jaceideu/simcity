@@ -8,6 +8,7 @@ namespace citygame {
             CityStats();
             void addMoney(int toAdd);
             bool spendMoney(int toSpend);
+            int& getMoneyReference();
             void setOnMoneyChanged(std::function<void(int)> callback);
             void setOnHappinessChanged(std::function<void(int)> callback);
         private:

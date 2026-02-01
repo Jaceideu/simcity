@@ -33,4 +33,8 @@ namespace citygame {
         return -2;
     }
 
+    int IndustrialBuilding::getCost() const {
+        return 4;
+    }
+
 }

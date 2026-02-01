@@ -1,5 +1,5 @@
 #pragma once
-#include "button.hpp"
+#include "ui_element.hpp"
 #include <memory>
 #include <vector>
 #include "building_placer.hpp"
@@ -9,11 +9,11 @@ namespace citygame {
     class UiManager {
         public:
             UiManager(int scale);
-            void addButton(std::unique_ptr<Button> button);
+            void addElement(std::unique_ptr<UiElement> element);
             void update();
             void draw();
         private:
-            std::vector<std::unique_ptr<Button>> buttons;
+            std::vector<std::unique_ptr<UiElement>> elements;
             int scale;
     };
 

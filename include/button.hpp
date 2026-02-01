@@ -1,21 +1,17 @@
 #pragma once
 #include <functional>
 #include "raylib-cpp.hpp"
+#include "ui_element.hpp"
 
 namespace citygame {
 
-    class Button {
+    class Button : public UiElement {
         public:
             Button(raylib::Vector2 pos, raylib::Rectangle source, std::function<void()> callback);
-            void draw(int scale);
-            void update(int scale);
-            static void loadTexture(std::string path);
-            static void unloadTexture();
+            virtual void draw(int scale) override;
+            virtual void update(int scale) override;
         protected:
             bool IsPressed(int scale);
-            static raylib::Texture2D texture;
-            raylib::Vector2 position;
-            raylib::Rectangle source;
             std::function<void()> callback;
 
     };

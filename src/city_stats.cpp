@@ -22,6 +22,10 @@ namespace citygame {
         return false;
     }
 
+    int& CityStats::getMoneyReference() {
+        return money;
+    }
+
     void CityStats::setOnMoneyChanged(std::function<void(int)> callback) {
         onMoneyChanged = callback;
     }

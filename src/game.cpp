@@ -3,6 +3,7 @@
 #include "constants.hpp"
 #include "ui_manager.hpp"
 #include "button.hpp"
+#include "counter.hpp"
 #include <iostream>
 
 namespace citygame {
@@ -15,8 +16,8 @@ namespace citygame {
         window.SetTargetFPS(60);
 
         GridCell::loadTexture("assets/textures/buildings.png");
-        Button::loadTexture("assets/textures/ui.png");
-        ui.addButton(make_unique<Button>(
+        UiElement::loadTexture("assets/textures/ui.png");
+        ui.addElement(make_unique<Button>(
             raylib::Vector2(0.0f, 0.0f),
             raylib::Rectangle(0.0f, 0.0f, 16.0f, 16.0f),
             [this] {
@@ -24,7 +25,7 @@ namespace citygame {
             }
 
         ));
-        ui.addButton(make_unique<Button>(
+        ui.addElement(make_unique<Button>(
             raylib::Vector2(16.0f, 0.0f),
             raylib::Rectangle(16.0f, 0.0f, 16.0f, 16.0f),
             [this] {
@@ -32,13 +33,18 @@ namespace citygame {
             }
 
         ));
-        ui.addButton(make_unique<Button>(
+        ui.addElement(make_unique<Button>(
             raylib::Vector2(32.0f, 0.0f),
             raylib::Rectangle(32.0f, 0.0f, 16.0f, 16.0f),
             [this] {
                 buildingPlacer.setBuildingIndex(2);
             }
 
+        ));
+
+        ui.addElement(make_unique<Counter>(
+            raylib::Vector2(0.0f, 16.0f),
+            cityStats.getMoneyReference()
         ));
 
         cityStats.setOnMoneyChanged(
@@ -51,7 +57,7 @@ namespace citygame {
 
     Game::~Game() {
         GridCell::unloadTexture();
-        Button::unloadTexture();
+        UiElement::unloadTexture();
     }
 
     void Game::enterMainLoop() {
