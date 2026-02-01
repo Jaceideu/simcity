@@ -23,12 +23,16 @@ namespace citygame {
         texture.Draw(source, dest);
     }
 
-    void GridCell::step(const int8_t x, const int8_t, Grid& grid) {
+    void GridCell::step(const int8_t x, const int8_t, Grid& grid, CityStats& stats) {
 
     }
 
     bool GridCell::isEmpty() {
         return true;
+    }
+
+    int GridCell::getMoneyBonus() {
+        return 0;
     }
 
     void GridCell::flip(bool flip) {

@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib-cpp.hpp"
 #include "city.hpp"
+#include "ui_manager.hpp"
+#include "city_stats.hpp"
 
 namespace citygame {
 
@@ -14,6 +16,9 @@ namespace citygame {
             raylib::Window window;
             raylib::RenderTexture2D renderTexture;    
             City city;
+            BuildingPlacer buildingPlacer;
+            UiManager ui;
+            CityStats cityStats;
     };
     
 }

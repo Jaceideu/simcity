@@ -1,7 +1,7 @@
 CXX := g++
 EXE_NAME := city_game
 MAIN_FILE := main.cpp
-SRC_FILES := game.cpp building.cpp city.cpp grid.cpp mouse_handler.cpp grid_cell.cpp residental_building.cpp decoration.cpp
+SRC_FILES := game.cpp building.cpp city.cpp grid.cpp building_placer.cpp grid_cell.cpp residental_building.cpp decoration.cpp industrial_building.cpp amusement_building.cpp ui_manager.cpp button.cpp city_stats.cpp
 SRC_FILES := $(addprefix src/, $(SRC_FILES))
 
 all: $(CPP_FILES)

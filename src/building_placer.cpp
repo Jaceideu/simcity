@@ -1,19 +1,21 @@
-#include "mouse_handler.hpp"
+#include "building_placer.hpp"
 #include "constants.hpp"
 #include "city.hpp"
 #include "raylib-cpp.hpp"
 #include "rng.hpp"
 #include "residental_building.hpp"
+#include "industrial_building.hpp"
+#include "amusement_building.hpp"
 #include <iostream>
 
 namespace citygame {
 
-    MouseHandler::MouseHandler(City* city) 
-        : city(city), selectRectangle(0, 0, city->getGrid().getCellSize(), city->getGrid().getCellSize()), selectColor(SELECTION_COLOR), cellX(0), cellY(0) {
+    BuildingPlacer::BuildingPlacer(City* city) 
+        : city(city), selectRectangle(0, 0, city->getGrid().getCellSize(), city->getGrid().getCellSize()), selectColor(SELECTION_COLOR), cellX(0), cellY(0), currBuildingIndex(0) {
         
     }
 
-    void MouseHandler::update() {
+    void BuildingPlacer::update() {
         using namespace raylib;
         raylib::Vector2 mPos = Mouse::GetPosition();
         mPos /= WINDOW_SCALE;
@@ -35,7 +37,23 @@ namespace citygame {
                 
                 bool shouldFlip = RandomInt(0, 1) == 1 ? true : false;
 
-                auto newBuilding = std::make_unique<ResidentalBuilding>();
+                std::unique_ptr<Building> newBuilding;
+
+                switch (currBuildingIndex)
+                {
+                case 0:
+                    newBuilding = std::make_unique<ResidentalBuilding>();
+                    break;
+                case 1:
+                    newBuilding = std::make_unique<IndustrialBuilding>();
+                    break;
+                case 2:
+                    newBuilding = std::make_unique<AmusementBuilding>();
+                    break;
+                default:
+                    break;
+                }
+
                 newBuilding->flip(shouldFlip);
 
                 city->getGrid().setCell(cCellX, cCellY, std::move(newBuilding));
@@ -43,9 +61,13 @@ namespace citygame {
         }
     }
 
-    void MouseHandler::draw() {
+    void BuildingPlacer::draw() {
         using namespace raylib;
         selectRectangle.Draw(selectColor);
+    }
+
+    void BuildingPlacer::setBuildingIndex(int i) {
+        currBuildingIndex = i;
     }
 
 }

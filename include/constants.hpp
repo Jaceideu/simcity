@@ -11,5 +11,6 @@ namespace citygame {
     inline constexpr unsigned int CITY_BACKGROUND_COLOR = 0x234975;
     inline constexpr unsigned int SELECTION_COLOR = 0xbfff3c;
     inline constexpr int CITY_SCREEN_CELL_OFFSET = 2;
+    inline constexpr int UI_SCALE = 3;
 
 }

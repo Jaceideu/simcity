@@ -6,7 +6,7 @@
 namespace citygame {
 
     City::City() 
-        :backgroundColor(CITY_BACKGROUND_COLOR), cellOffsetX(CITY_SCREEN_CELL_OFFSET), cellOffsetY(CITY_SCREEN_CELL_OFFSET), grid(CITY_GRID_WIDTH, CITY_GRID_HEIGHT, CELL_SIZE), mouseHandler(this) {
+        :backgroundColor(CITY_BACKGROUND_COLOR), cellOffsetX(CITY_SCREEN_CELL_OFFSET), cellOffsetY(CITY_SCREEN_CELL_OFFSET), grid(CITY_GRID_WIDTH, CITY_GRID_HEIGHT, CELL_SIZE) {
         
         for (int y = 0; y < grid.getHeight(); y++) {
             for (int x = 0; x < grid.getWidth(); x++) {
@@ -20,13 +20,15 @@ namespace citygame {
     }
 
     void City::update() {
-        mouseHandler.update();
+        
     }
-
-    void City::draw() {
+    
+    void City::drawBackground() {
         raylib::Rectangle rect(cellOffsetX * grid.getCellSize(), cellOffsetY * grid.getCellSize(), grid.getWidth() * CELL_SIZE, grid.getHeight() * CELL_SIZE);
         rect.Draw(backgroundColor);
-        mouseHandler.draw();
+    }
+
+    void City::drawForeground() {
         grid.draw(raylib::Vector2(cellOffsetX * grid.getCellSize(), cellOffsetY * grid.getCellSize()));
     }
 
@@ -35,9 +37,19 @@ namespace citygame {
         y -= cellOffsetY;
     }
 
+    void City::step(CityStats& stats) {
+        for (int y = 0; y < grid.getHeight(); y++) {
+            for (int x = 0; x < grid.getWidth(); x++) {
+                grid.getCell(x, y)->step(x, y, grid, stats);
+            }
+        }
+    }
+
     Grid& City::getGrid() {
         return grid;
     }
+
+
     
 }
 

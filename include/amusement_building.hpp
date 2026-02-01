@@ -3,12 +3,11 @@
 
 namespace citygame {
 
-    class ResidentalBuilding : public Building {
+    class AmusementBuilding : public Building {
         public:
-            ResidentalBuilding();
+            AmusementBuilding();
             virtual void step(const int8_t x, const int8_t, Grid& grid, CityStats& stats) override;
-            virtual int getMoneyBonus() override;
+        
     };
 
 }
-

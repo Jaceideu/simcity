@@ -6,17 +6,19 @@ namespace citygame {
 
     class City;
 
-    class MouseHandler {
+    class BuildingPlacer {
         public:
-            MouseHandler(City* city);
+            BuildingPlacer(City* city);
             void update();
             void draw();
+            void setBuildingIndex(int i);
         private:
             City* city;
             raylib::Rectangle selectRectangle;
             raylib::Color selectColor;
             int8_t cellX;
             int8_t cellY;
+            int currBuildingIndex;
     };
 
 }
