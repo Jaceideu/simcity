@@ -3,19 +3,17 @@
 namespace citygame {
 
     CityStats::CityStats()
-        : money(0), happiness(2) {
+        : money(10), happiness(0) {
 
     }
 
     void CityStats::addMoney(int toAdd) {
         money += toAdd;
-        onMoneyChanged(money);
     }
 
     bool CityStats::spendMoney(int toSpend) {
         if (money >= toSpend) {
             money -= toSpend;
-            onMoneyChanged(money);
             return true;
         }
         
@@ -26,14 +24,24 @@ namespace citygame {
         return money;
     }
 
-    void CityStats::setOnMoneyChanged(std::function<void(int)> callback) {
-        onMoneyChanged = callback;
+    int&  CityStats::getHappinessReference() {
+        return happiness;
     }
 
-    void CityStats::setOnHappinessChanged(std::function<void(int)> callback) {
-        onHappinessChanged = callback;
+    void CityStats::setMoney(int newMoney) {
+        money = newMoney;
     }
 
+    void CityStats::addHappiness(int toAdd) {
+        happiness += toAdd;
+    }
 
+    void CityStats::setHappiness(int newHappiness) {
+        happiness = newHappiness;
+    }
+
+    int CityStats::getHappiness() const {
+        return happiness;
+    }
 
 }

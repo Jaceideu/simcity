@@ -12,13 +12,13 @@ namespace citygame {
             ~Game();
             void enterMainLoop();
         private:
+            void startNewRun();
             raylib::Color clearColor;   
             raylib::Window window;
             raylib::RenderTexture2D renderTexture;    
             City city;
             BuildingPlacer buildingPlacer;
             UiManager ui;
-            CityStats cityStats;
     };
     
 }

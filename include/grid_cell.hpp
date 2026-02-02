@@ -17,6 +17,7 @@ namespace citygame {
             virtual void step(const int8_t x, const int8_t, Grid& grid, CityStats& stats);
             virtual bool isEmpty();
             virtual int getMoneyBonus();
+            virtual int getHappinessBonus() const;
             void flip(bool flip);
         protected:
             static raylib::Texture2D texture;

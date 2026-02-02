@@ -54,9 +54,12 @@ namespace citygame {
                     break;
                 }
 
-                newBuilding->flip(shouldFlip);
+                if (city->getStats().spendMoney(newBuilding->getCost())) {
+                    newBuilding->flip(shouldFlip);
+                    city->getGrid().setCell(cCellX, cCellY, std::move(newBuilding));
+                }
 
-                city->getGrid().setCell(cCellX, cCellY, std::move(newBuilding));
+               
             }
         }
     }

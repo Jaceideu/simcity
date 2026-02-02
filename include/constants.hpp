@@ -14,5 +14,7 @@ namespace citygame {
     inline constexpr int UI_SCALE = 4;
     inline constexpr int REGULAR_FONT_SIZE = 10;
     inline constexpr int REGULAR_FONT_SPACING = 2;
+    inline constexpr unsigned int MONEY_COLOR = 0xffd100;
+    inline constexpr unsigned int HAPPINESS_COLOR = 0xbfff3c;
 
 }

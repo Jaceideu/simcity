@@ -5,11 +5,12 @@
 #include "button.hpp"
 #include "counter.hpp"
 #include <iostream>
+#include "texture_counter.hpp"
 
 namespace citygame {
 
     Game::Game()
-        :clearColor(), window(SCREEN_WIDTH * WINDOW_SCALE, SCREEN_HEIGHT * WINDOW_SCALE, "City Game"), renderTexture(SCREEN_WIDTH, SCREEN_HEIGHT), city(), buildingPlacer(&city),  ui(UI_SCALE), cityStats()  {
+        :clearColor(), window(SCREEN_WIDTH * WINDOW_SCALE, SCREEN_HEIGHT * WINDOW_SCALE, "City Game"), renderTexture(SCREEN_WIDTH, SCREEN_HEIGHT), city(), buildingPlacer(&city),  ui(UI_SCALE)  {
         using namespace std;
         using namespace raylib;
 
@@ -23,8 +24,13 @@ namespace citygame {
             [this] {
                 buildingPlacer.setBuildingIndex(0);
             }
-
         ));
+        ui.addElement(make_unique<Label>(
+            raylib::Vector2(0.0f, 0.0f),
+            "2"
+        ));
+
+
         ui.addElement(make_unique<Button>(
             raylib::Vector2(16.0f, 0.0f),
             raylib::Rectangle(16.0f, 0.0f, 16.0f, 16.0f),
@@ -33,6 +39,11 @@ namespace citygame {
             }
 
         ));
+        ui.addElement(make_unique<Label>(
+            raylib::Vector2(16.0f, 0.0f),
+            "4"
+        ));
+
         ui.addElement(make_unique<Button>(
             raylib::Vector2(32.0f, 0.0f),
             raylib::Rectangle(32.0f, 0.0f, 16.0f, 16.0f),
@@ -41,17 +52,32 @@ namespace citygame {
             }
 
         ));
-
-        ui.addElement(make_unique<Counter>(
-            raylib::Vector2(0.0f, 16.0f),
-            cityStats.getMoneyReference()
+        ui.addElement(make_unique<Label>(
+            raylib::Vector2(32.0f, 0.0f),
+            "3"
         ));
 
-        cityStats.setOnMoneyChanged(
-            [this](int money) {
-                cout << "Money: " << money << "\n";
+        ui.addElement(make_unique<Button>(
+            raylib::Vector2(renderTexture.GetTexture().width - 16.0f, renderTexture.GetTexture().height - 16.0f),
+            raylib::Rectangle(0.0f, 16.0f, 16.0f, 16.0f),
+            [this] {
+                city.step();
             }
-        );
+        ));
+        ui.addElement(make_unique<Counter>(
+            raylib::Vector2(0.0f, 16.0f),
+            city.getStats().getMoneyReference()
+        ));
+
+        ui.addElement(make_unique<TextureCounter>(
+            raylib::Vector2(0.0f, 32.0f),
+            city.getHappinessGaugeReference(),
+            std::map<int, raylib::Rectangle>{
+                {1, raylib::Rectangle(16.0f, 16.0f, 16.0f, 16.0f)},
+                {2, raylib::Rectangle(32.0f, 16.0f, 16.0f, 16.0f)},
+                {3, raylib::Rectangle(48.0f, 16.0f, 16.0f, 16.0f)}
+            }
+        ));
 
     }
 
@@ -67,10 +93,6 @@ namespace citygame {
             buildingPlacer.update();
             city.update();
             ui.update();
-
-            if (raylib::Keyboard::IsKeyPressed(KeyboardKey::KEY_SPACE)) {
-                city.step(cityStats);
-            }
 
             renderTexture.BeginMode();
             window.ClearBackground(clearColor);
@@ -96,6 +118,10 @@ namespace citygame {
             
         }
 
+    }
+
+    void Game::startNewRun() {
+        
     }
 
 }

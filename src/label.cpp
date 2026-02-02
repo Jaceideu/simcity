@@ -5,7 +5,6 @@ namespace citygame {
 
     Label::Label(raylib::Vector2 pos, std::string text)
         : UiElement(pos, raylib::Rectangle(0.0)), text(text) {
-
     }
 
     void Label::draw(int scale) {

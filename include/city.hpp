@@ -1,6 +1,7 @@
 #pragma once
 #include "grid.hpp"
 #include "building_placer.hpp"
+#include "city_stats.hpp"
 
 namespace citygame {
 
@@ -13,13 +14,18 @@ namespace citygame {
             void drawBackground();
             void drawForeground();
             void cityCellToGridCell(int8_t& x, int8_t& y);
-            void step(CityStats& stats);
+            void step();
             Grid& getGrid();
+            CityStats& getStats();
+
+            int& getHappinessGaugeReference();
         private:
             raylib::Color backgroundColor;
             int8_t cellOffsetX;
             int8_t cellOffsetY;
             Grid grid;
+            CityStats stats;
+            int happinessGauge;
     };
 
 }

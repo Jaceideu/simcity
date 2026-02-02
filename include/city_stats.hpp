@@ -9,12 +9,13 @@ namespace citygame {
             void addMoney(int toAdd);
             bool spendMoney(int toSpend);
             int& getMoneyReference();
-            void setOnMoneyChanged(std::function<void(int)> callback);
-            void setOnHappinessChanged(std::function<void(int)> callback);
+            int& getHappinessReference();
+            void addHappiness(int toAdd);
+            void setMoney(int newMoney);
+            void setHappiness(int newHappiness);
+            int getHappiness() const;
         private:
             int money;
             int happiness;
-            std::function<void(int)> onMoneyChanged;
-            std::function<void(int)> onHappinessChanged;
     };
 }

@@ -33,6 +33,10 @@ namespace citygame {
         return -2;
     }
 
+    int IndustrialBuilding::getHappinessBonus() const {
+        return -1;
+    }
+
     int IndustrialBuilding::getCost() const {
         return 4;
     }

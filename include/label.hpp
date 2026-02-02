@@ -10,6 +10,7 @@ namespace citygame {
             virtual void update(int scale) override;
         protected:
             raylib::Text text;
+
     };
 
 

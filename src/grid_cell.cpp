@@ -35,6 +35,10 @@ namespace citygame {
         return 0;
     }
 
+    int GridCell::getHappinessBonus() const {
+        return 0;
+    }
+
     void GridCell::flip(bool flip) {
         int flipScale = flip ? -1 : 1;
         source.width = fabs(source.width) * flipScale;

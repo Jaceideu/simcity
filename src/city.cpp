@@ -6,7 +6,7 @@
 namespace citygame {
 
     City::City() 
-        :backgroundColor(CITY_BACKGROUND_COLOR), cellOffsetX(CITY_SCREEN_CELL_OFFSET), cellOffsetY(CITY_SCREEN_CELL_OFFSET), grid(CITY_GRID_WIDTH, CITY_GRID_HEIGHT, CELL_SIZE) {
+        :backgroundColor(CITY_BACKGROUND_COLOR), cellOffsetX(CITY_SCREEN_CELL_OFFSET), cellOffsetY(CITY_SCREEN_CELL_OFFSET), grid(CITY_GRID_WIDTH, CITY_GRID_HEIGHT, CELL_SIZE), happinessGauge(2) {
         
         for (int y = 0; y < grid.getHeight(); y++) {
             for (int x = 0; x < grid.getWidth(); x++) {
@@ -37,17 +37,34 @@ namespace citygame {
         y -= cellOffsetY;
     }
 
-    void City::step(CityStats& stats) {
+    void City::step() {
+        stats.setHappiness(0);
         for (int y = 0; y < grid.getHeight(); y++) {
             for (int x = 0; x < grid.getWidth(); x++) {
                 grid.getCell(x, y)->step(x, y, grid, stats);
             }
+        }
+
+        if (stats.getHappiness() > 0) {
+            happinessGauge++;
+        }
+        else if(stats.getHappiness() < 0) {
+            happinessGauge--;
         }
     }
 
     Grid& City::getGrid() {
         return grid;
     }
+
+    CityStats& City::getStats() {
+        return stats;
+    }
+
+    int& City::getHappinessGaugeReference() {
+        return happinessGauge;
+    }
+    
 
 
     

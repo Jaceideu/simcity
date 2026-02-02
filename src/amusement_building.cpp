@@ -14,5 +14,9 @@ namespace citygame {
     int AmusementBuilding::getCost() const {
         return 3;
     }
+    
+    int AmusementBuilding::getHappinessBonus() const {
+        return 2;
+    }
 
 }
