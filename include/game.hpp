@@ -16,6 +16,8 @@ namespace citygame {
             raylib::Color clearColor;   
             raylib::Window window;
             raylib::RenderTexture2D renderTexture;    
+
+            
             City city;
             BuildingPlacer buildingPlacer;
             UiManager ui;
