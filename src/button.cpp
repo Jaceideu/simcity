@@ -8,10 +8,12 @@ namespace citygame {
     }
 
     void Button::draw(int scale) {
+        if (!isVisible) return;
         texture.Draw(source, raylib::Rectangle(position.x * scale, position.y * scale, source.width * scale, source.height * scale));
     }
 
     void Button::update(int scale) {
+        if (!isVisible) return;
         if (isPressed(scale)) {
             callback();
         }

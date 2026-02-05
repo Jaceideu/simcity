@@ -4,8 +4,8 @@
 #include "ui_manager.hpp"
 #include "button.hpp"
 #include "counter.hpp"
-#include <iostream>
 #include "texture_counter.hpp"
+#include "ui_panel.hpp"
 
 namespace citygame {
 
@@ -94,6 +94,11 @@ namespace citygame {
             raylib::Color::Red()
         ));
 
+        ui.addElement(make_unique<UiPanel>(
+            raylib::Rectangle(renderTexture.GetTexture().width / 2 - 50.0f, renderTexture.GetTexture().height / 2 - 50.0f, 100.0f, 100.0f),
+            raylib::Color::Green()
+        ))->isVisible = false;
+
     }
 
     Game::~Game() {
@@ -135,8 +140,5 @@ namespace citygame {
 
     }
 
-    void Game::startNewRun() {
-        
-    }
 
 }

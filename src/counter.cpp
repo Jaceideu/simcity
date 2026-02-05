@@ -8,6 +8,7 @@ namespace citygame {
     }
 
     void Counter::update(int scale) {
+        if (!isVisible) return;
         if (target != lastNumber) {
             lastNumber = target;
             text.text = std::to_string(target);

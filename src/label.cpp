@@ -8,6 +8,7 @@ namespace citygame {
     }
 
     void Label::draw(int scale) {
+        if (!isVisible) return;
         text.fontSize = REGULAR_FONT_SIZE * scale;
         text.spacing = REGULAR_FONT_SPACING * scale;
         text.Draw(position * scale);

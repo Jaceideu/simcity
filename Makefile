@@ -16,7 +16,8 @@ button.cpp \
 city_stats.cpp \
 ui_element.cpp \
 label.cpp counter.cpp \
-texture_counter.cpp
+texture_counter.cpp \
+ui_panel.cpp
 
 OBJ_FILES := $(SRC_FILES:.cpp=.o)
 OBJ_FILES := $(addprefix bin/, $(OBJ_FILES))

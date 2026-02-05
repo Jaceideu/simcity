@@ -10,6 +10,10 @@ namespace citygame {
             virtual void update(int scale) = 0;
             static void loadTexture(std::string path);
             static void unloadTexture();
+            void hide();
+            void show();
+            bool isMarkedForDeletion;
+            bool isVisible;
         protected:
             static raylib::Texture2D texture;
             raylib::Vector2 position;

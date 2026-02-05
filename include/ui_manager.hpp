@@ -1,7 +1,7 @@
 #pragma once
 #include "ui_element.hpp"
 #include <memory>
-#include <vector>
+#include <list>
 #include "building_placer.hpp"
 
 namespace citygame {
@@ -9,11 +9,11 @@ namespace citygame {
     class UiManager {
         public:
             UiManager(int scale);
-            void addElement(std::unique_ptr<UiElement> element);
+            UiElement* addElement(std::unique_ptr<UiElement> element);
             void update();
             void draw();
         private:
-            std::vector<std::unique_ptr<UiElement>> elements;
+            std::list<std::unique_ptr<UiElement>> elements;
             int scale;
     };
 

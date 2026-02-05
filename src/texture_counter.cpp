@@ -9,10 +9,12 @@ namespace citygame {
     }
 
     void TextureCounter::draw(int scale) {
+        if (!isVisible) return;
         texture.Draw(source, raylib::Rectangle(position.x * scale, position.y * scale, source.width * scale, source.height * scale));
     }
 
     void TextureCounter::update(int scale) {
+        if (!isVisible) return;
         if (target != lastNumber) {
             lastNumber = target;
             if (numToTexture.find(target) != numToTexture.end()) {

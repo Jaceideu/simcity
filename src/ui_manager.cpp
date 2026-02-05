@@ -7,13 +7,21 @@ namespace citygame {
         : scale(scale) {
     }
 
-    void UiManager::addElement(std::unique_ptr<UiElement> element) {
+    UiElement* UiManager::addElement(std::unique_ptr<UiElement> element) {
         elements.emplace_back(std::move(element));
+        return elements.back().get();
     }
 
     void UiManager::update() {
-        for (auto& el : elements) {
-            el->update(scale);
+
+        for (auto it = elements.begin(); it != elements.end(); ) {
+            if ((*it)->isMarkedForDeletion) {
+                it = elements.erase(it);
+            }
+            else {
+                (*it)->update(scale);
+                ++it;
+            }
         }
     }
 
