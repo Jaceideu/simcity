@@ -2,13 +2,16 @@
 #include <string>
 
 namespace citygame {
-    Counter::Counter(raylib::Vector2 pos, int& target)
-        :Label(pos, "0"), target(target) {
+    Counter::Counter(raylib::Vector2 pos, int& target, raylib::Color color)
+        :Label(pos, "0", color), target(target), lastNumber(0) {
 
     }
 
     void Counter::update(int scale) {
-        text.text = std::to_string(target);
+        if (target != lastNumber) {
+            lastNumber = target;
+            text.text = std::to_string(target);
+        }
     }
 }
 

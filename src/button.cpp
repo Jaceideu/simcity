@@ -12,21 +12,25 @@ namespace citygame {
     }
 
     void Button::update(int scale) {
-        if (IsPressed(scale)) {
+        if (isPressed(scale)) {
             callback();
         }
     }
-    
-    bool Button::IsPressed(int scale) {
+
+    bool Button::isHovered(int scale) {
         raylib::Vector2 mPos = raylib::Mouse::GetPosition();
-
-        if (!raylib::Mouse::IsButtonPressed(MouseButton::MOUSE_BUTTON_LEFT)) return false;
-
 
         if (mPos.x < position.x * scale) return false;
         if (mPos.x > position.x * scale + source.width * scale) return false;
         if (mPos.y < position.y * scale) return false;
         if (mPos.y > position.y * scale + source.height * scale) return false;
+
+        return true;
+    }
+    
+    bool Button::isPressed(int scale) {
+        if (!isHovered(scale)) return false;
+        if (!raylib::Mouse::IsButtonPressed(MouseButton::MOUSE_BUTTON_LEFT)) return false;
 
         return true;
     }

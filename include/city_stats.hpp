@@ -14,8 +14,12 @@ namespace citygame {
             void setMoney(int newMoney);
             void setHappiness(int newHappiness);
             int getHappiness() const;
+            int& getTax();
+            void addRound(int toAdd);
         private:
             int money;
             int happiness;
+            int roundNumber;
+            int tax;
     };
 }

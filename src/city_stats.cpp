@@ -1,9 +1,10 @@
 #include "city_stats.hpp"
+#include <cmath>
 
 namespace citygame {
 
     CityStats::CityStats()
-        : money(10), happiness(0) {
+        : money(10), happiness(0), roundNumber(1), tax(0) {
 
     }
 
@@ -42,6 +43,16 @@ namespace citygame {
 
     int CityStats::getHappiness() const {
         return happiness;
+    }
+
+    int& CityStats::getTax() {
+        return tax;
+    }
+
+    void CityStats::addRound(int toAdd) {
+        roundNumber += toAdd;
+        double taxReal = roundNumber * log10(roundNumber);
+        tax = floor(taxReal);
     }
 
 }

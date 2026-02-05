@@ -45,12 +45,14 @@ namespace citygame {
             }
         }
 
-        if (stats.getHappiness() > 0) {
+        if (stats.getHappiness() > 0 && happinessGauge <= 2) {
             happinessGauge++;
         }
         else if(stats.getHappiness() < 0) {
             happinessGauge--;
         }
+        stats.addMoney(-stats.getTax());
+        stats.addRound(1);
     }
 
     Grid& City::getGrid() {

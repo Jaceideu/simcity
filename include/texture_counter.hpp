@@ -11,7 +11,6 @@ namespace citygame {
             virtual void update(int scale) override;
         protected:
             std::map<int, raylib::Rectangle> numToTexture;
-            int lastNumber;
 
     };
 

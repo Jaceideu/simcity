@@ -27,5 +27,5 @@ ifeq ($(OS),Windows_NT)
 endif
 
 
-all: $(CPP_FILES)
+all: $(CRC_FILES)
 	$(CXX) $(MAIN_FILE) $(SRC_FILES) -o $(EXE_NAME) -I./include -I./include/raylib-cpp -L./lib $(LDFLAGS)

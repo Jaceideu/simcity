@@ -25,7 +25,8 @@ namespace citygame {
             }
         }
 
-        stats.addMoney(moneyBonus);
+        stats.addMoney(moneyBonus + 2);
+        stats.addHappiness(-2);
 
     }
 
@@ -34,7 +35,7 @@ namespace citygame {
     }
 
     int IndustrialBuilding::getHappinessBonus() const {
-        return -1;
+        return -2;
     }
 
     int IndustrialBuilding::getCost() const {

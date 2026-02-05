@@ -4,7 +4,7 @@ namespace citygame {
 
 
     TextureCounter::TextureCounter(raylib::Vector2 pos, int& target, std::map<int, raylib::Rectangle> numToTexture)
-        : Counter(pos, target), numToTexture(numToTexture), lastNumber(0) {
+        : Counter(pos, target), numToTexture(numToTexture) {
 
     }
 

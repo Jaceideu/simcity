@@ -3,8 +3,8 @@
 
 namespace citygame {
 
-    Label::Label(raylib::Vector2 pos, std::string text)
-        : UiElement(pos, raylib::Rectangle(0.0)), text(text) {
+    Label::Label(raylib::Vector2 pos, std::string text, raylib::Color color)
+        : UiElement(pos, raylib::Rectangle(0.0)), text(text, static_cast<float>(REGULAR_FONT_SIZE), color) {
     }
 
     void Label::draw(int scale) {

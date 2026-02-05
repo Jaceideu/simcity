@@ -11,9 +11,9 @@ namespace citygame {
             virtual void draw(int scale) override;
             virtual void update(int scale) override;
         protected:
-            bool IsPressed(int scale);
+            bool isHovered(int scale);
+            bool isPressed(int scale);
             std::function<void()> callback;
-
     };
 
 }

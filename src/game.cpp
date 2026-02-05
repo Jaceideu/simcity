@@ -27,7 +27,8 @@ namespace citygame {
         ));
         ui.addElement(make_unique<Label>(
             raylib::Vector2(0.0f, 0.0f),
-            "2"
+            "2",
+            raylib::Color(MONEY_COLOR)
         ));
 
 
@@ -41,7 +42,8 @@ namespace citygame {
         ));
         ui.addElement(make_unique<Label>(
             raylib::Vector2(16.0f, 0.0f),
-            "4"
+            "4",
+            raylib::Color(MONEY_COLOR)
         ));
 
         ui.addElement(make_unique<Button>(
@@ -54,7 +56,8 @@ namespace citygame {
         ));
         ui.addElement(make_unique<Label>(
             raylib::Vector2(32.0f, 0.0f),
-            "3"
+            "3",
+            raylib::Color(MONEY_COLOR)
         ));
 
         ui.addElement(make_unique<Button>(
@@ -66,7 +69,8 @@ namespace citygame {
         ));
         ui.addElement(make_unique<Counter>(
             raylib::Vector2(0.0f, 16.0f),
-            city.getStats().getMoneyReference()
+            city.getStats().getMoneyReference(),
+            raylib::Color(MONEY_COLOR)
         ));
 
         ui.addElement(make_unique<TextureCounter>(
@@ -77,6 +81,17 @@ namespace citygame {
                 {2, raylib::Rectangle(32.0f, 16.0f, 16.0f, 16.0f)},
                 {3, raylib::Rectangle(48.0f, 16.0f, 16.0f, 16.0f)}
             }
+        ));
+
+        ui.addElement(make_unique<Label>(
+            raylib::Vector2(64.0f, 0.0f),
+            "Tax:",
+            raylib::Color::Red()
+        ));
+        ui.addElement(make_unique<Counter>(
+            raylib::Vector2(96.0f, 0.0f),
+            city.getStats().getTax(),
+            raylib::Color::Red()
         ));
 
     }
